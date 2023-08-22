@@ -1,0 +1,15 @@
+
+
+<%= form_for @item, url: item_path(@item), method: :patch do |f| %>    
+    <%= f.label :name %>
+    <%= f.text_field :name %><br>
+  
+    <%= f.label :Descr %>
+    <%= f.text_area :description %><br
+  
+    <%= f.label :price %>
+    <%= f.number_field :price %><br>
+  
+    <%= f.submit 'Update Item' %>
+<% end %>
+  
