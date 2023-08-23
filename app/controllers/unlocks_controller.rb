@@ -1,0 +1,3 @@
+class UnlocksController < ApplicationController
+    
+end

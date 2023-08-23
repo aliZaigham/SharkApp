@@ -10,7 +10,6 @@ gem "byebug"
 gem "sprockets-rails"
 
 #Device gem include
-
 gem 'devise'
 
 # Use sqlite3 as the database for Active Record

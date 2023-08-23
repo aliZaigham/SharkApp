@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
-  devise_for :users
-  #devise_for :users
 
+  devise_for :users, controllers: { sessions: 'users/sessions', unlocks: 'users/unlocks' }, controllers: { unlocks: 'unlocks' }
+
+  
   resources :items
 
-  root to: "users#index"
+  root to: "items#index"
 
 end
 

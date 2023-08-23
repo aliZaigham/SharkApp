@@ -1,0 +1,3 @@
+class SharkMailer < ApplicationMailer
+    
+end

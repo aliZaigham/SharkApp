@@ -14,7 +14,7 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = '1a82966fbdb538aded4dbcd4c86afcecc56b5aec8b0816504ad80923cacf08e6588129eb8534002cd335bcba1198368492e3e7ee43d8cb9bc9c11f30b8789ca1'
+  # config.secret_key = '43e5da336312dcf0df05da697130ecd9353bf4551b23b2dba2b75b600f20b05e08696b6ff297487fd085cad42cb3f73145dc39eb89085dde6d974ae5b0c5f671'
 
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
@@ -126,7 +126,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 12
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = 'bea94d253cad1ba34b1a7e84f69922b5701644bf203e1f3a985fb2e435ddc8b04664cc78e255836bca8c68b49d8ec77e696ab577c47096c2ad28f34423b4f836'
+  # config.pepper = '17b6d316ace09a11bfac3f4d5d12ebc5999ab134f386df97d94d7ba122c4c5f588dfa0e46ee0e3a221c535db33198a99f10e09eee51c1e96ff844cac68c24132'
 
   # Send a notification to the original email when the user's email is changed.
   # config.send_email_changed_notification = false
@@ -310,4 +310,38 @@ Devise.setup do |config|
   # When set to false, does not sign a user in automatically after their password is
   # changed. Defaults to true, so a user is signed in automatically after changing a password.
   # config.sign_in_after_change_password = true
+
+
+  #device lockable
+
+  # Defines which strategy will be used to lock an account.
+  config.lock_strategy = :failed_attempts
+
+  # Defines which key will be used when locking and unlocking an account
+  config.unlock_keys = [ :time ]
+
+  # Defines which strategy will be used to unlock an account.
+  # :time  = Re-enables login after a certain amount of time (see :unlock_in below)
+  config.unlock_strategy = :time
+
+  # Number of authentication tries before locking an account if lock_strategy
+  # is failed attempts.
+  config.maximum_attempts = 3
+
+  # Time interval to unlock the account if :time is enabled as unlock_strategy.
+  config.unlock_in = 30.seconds
+
+  # Recoverable
+
+  Devise.setup do |config|
+    # Other Devise configurations
+  
+    # Configure unlockable settings
+    config.unlock_strategy = :email # You can also set it to :both for both email and manual unlock
+    config.unlock_keys = [:email] # The attribute(s) used to identify the account
+    config.unlock_in = 1.minutes # Time limit for confirming the unlock action
+  
+    # Other configuration options
+  end
+
 end

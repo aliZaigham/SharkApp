@@ -69,4 +69,18 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
 
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+  config.action_mailer.default_options = { from: 'your_zaigham@gmail.com' }
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: 'smtp.devise@user.com',
+    domain: 'gmail.com',
+    port: 587,
+    user_name: 'alizaghamstudent@gmail.com',
+    password: 'vryixlcuszzyijax',
+    authentication: 'plain',
+    enable_starttls_auto: true
+  }
+
 end
