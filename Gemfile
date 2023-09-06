@@ -9,8 +9,14 @@ gem "byebug"
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
+gem 'sassc-rails'
+
+
 #Device gem include
 gem 'devise'
+
+# Stripe gem inculde
+gem 'stripe'
 
 # Use sqlite3 as the database for Active Record
 gem "sqlite3", "~> 1.4"

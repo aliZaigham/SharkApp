@@ -1,0 +1,41 @@
+
+<div class="d-flex">
+      <% @subitems.each do |item| %>   
+
+      <div class="card mx-auto" style="width: 28rem;">
+            <div class="card-body bg-secondary text-white">
+
+                  <h5 class = 'text-center'><%=item.title%></h5>
+                  <p class="card-text"><%=item.description%></p>
+                  <p class="card-text"><%=item.price%></p>
+                  <a href="show/<%=item.id%>">show</a> |
+                  <a href="delete/<%=item.id%>" data-turbo-confirm="are u sure">delete</a> |
+
+                  <%=form_with(url: cart_add_path) do |f| %>
+                        <%= f.hidden_field :id, value: item.id %>
+                        <div class:"d-flex">
+
+                                   <%= f.number_field :quantity, value: 0 ,min: 1, class:'Width 8% text-dark ' %>
+                              
+                                   <%= f.submit "Add", class: "btn btn-primary"%>
+                              
+                        </div> 
+                  <% end %>
+                  
+            </div>
+      </div>
+      <% end %>
+</div>
+<div class ='container'>
+      <div class ='row'>
+            <div class = 'col-6'>
+            </div>
+
+            <div class = 'col-2 mt-5'>
+                  <%= link_to "Add a Subitem", new_path, class: "btn btn-primary" %>
+            </div>
+
+            <div class = 'col-3'>
+            </div>
+      </div>      
+</div>

@@ -1,0 +1,21 @@
+<%= form_for @subitem, url:'/subitem/create' do |f| %>
+
+    <select name=item_id>
+        <%@item.each do |i|%>
+            <option value='<%= i.id%>'><%= i.name%></option>
+        <% end %>
+    </select><br>
+
+    <%= f.label :Title %><br>
+    <%= f.text_field :title %><br>
+  
+    <%= f.label :Descr %><br>
+    <%= f.text_area :description %><br>
+  
+    <%= f.label :price %><br>
+    <%= f.number_field :price %><br>
+
+  
+    <%= f.submit 'Create Item' %>
+<% end %>
+  

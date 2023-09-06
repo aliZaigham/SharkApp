@@ -333,15 +333,5 @@ Devise.setup do |config|
 
   # Recoverable
 
-  Devise.setup do |config|
-    # Other Devise configurations
-  
-    # Configure unlockable settings
-    config.unlock_strategy = :email # You can also set it to :both for both email and manual unlock
-    config.unlock_keys = [:email] # The attribute(s) used to identify the account
-    config.unlock_in = 1.minutes # Time limit for confirming the unlock action
-  
-    # Other configuration options
-  end
 
 end

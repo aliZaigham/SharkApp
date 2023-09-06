@@ -1,28 +1,56 @@
-<h2>Log in</h2>
+<div class = 'container Larger shadow '>
+  <div class ='row'>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+    <div class = 'col-8 mt-4 pr-0'>
+      
+    <%= image_tag 'login1.jpg', style: 'border-radius: 15px;', width: 654, height: 536 %>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
     </div>
-  <% end %>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
+    <div class ='col-4 Larger shadow mt-4 pr-3'>
 
-<%= render "devise/shared/links" %>
+          <p class = 'mt-10 text-center text-2xl font-bold leading-9 tracking-tight'>Log in</p>
+
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+              <div class="field px-7">
+                <%= f.label :email,class:'block text-sm font-medium leading-4' %><br />
+                <%= f.email_field :email, autofocus: true, autocomplete: "email",class:"form-control mb-3"%>
+              </div>
+
+              <div class="field px-7 ">
+                <%= f.label :password, class:'block text-sm font-medium leading-4'%><br />
+                <%= f.password_field :password, autocomplete: "current-password",class:"form-control" %>
+              </div>
+
+              <% if devise_mapping.rememberable? %>
+                <div class="field px-7">
+                  <%= f.check_box :remember_me %>
+                  <%= f.label :remember_me%>
+                </div>
+              <% end %>
+
+
+              <div class=' px-7 mt-3 mb-2'>
+
+                <div class='mx-auto'>
+                  <%= f.submit "Log in",class:'btn bg-primary text-white' %>
+                </div>
+
+              </div>
+
+          <% end %>
+        <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+          <%= link_to "Forgot your password", new_password_path(resource_name)%> /
+          <a href="/users/sign_up" >create account</a>
+        <% end %>
+
+    </div>
+
+             
+</div>
+</div>
+
 
 

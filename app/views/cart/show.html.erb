@@ -1,0 +1,23 @@
+<h1>Your Cart</h1>
+
+<%= button_to "Buy Now!", checkout_path, remote: true, data: {turbo: false} %>
+
+<% @cartitems.each  do |item| %>
+
+  Name: <%= item.subitem.title %><br>
+  Price $: <%= item.subitem.price %><br>
+  Quantity: <%= item.quantity %><br>
+  Subtotal $:<%= (item.subitem.price.to_i * item.quantity.to_i)%>
+  
+  <%=form_with(url: cart_update_path, method: :patch) do |f| %>
+    <%= f.hidden_field :id, value: item.id %>
+    <%= f.number_field :quantity , value: item.quantity,min: 0, class:'text-dark' %>
+    <%= f.submit "Update Cart", class: "btn btn-primary"%>
+  <% end %>
+
+  <%= form_with(url: cart_remove_path) do |f| %>
+    <input type="hidden" value="<%=item.id%>" name="item_id" >
+    <%= f.submit "X", class: "btn btn-primary" %>
+  <% end %>
+  
+<% end %>

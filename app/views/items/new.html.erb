@@ -1,11 +1,15 @@
 <%= form_for @item, url: items_path do |f| %>
-    <%= f.label :name %>
+
+    <%= f.label :image %><br>
+    <%= f.file_field :image %><br>
+
+    <%= f.label :name %><br>
     <%= f.text_field :name %><br>
   
-    <%= f.label :Descr %>
-    <%= f.text_area :description %><br
+    <%= f.label :Descr %><br>
+    <%= f.text_area :description %><br>
   
-    <%= f.label :price %>
+    <%= f.label :price %><br>
     <%= f.number_field :price %><br>
   
     <%= f.submit 'Create Item' %>
