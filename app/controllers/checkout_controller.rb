@@ -7,7 +7,7 @@ class CheckoutController < ApplicationController
         cartitems.each do |item| 
             hash = {
                 price_data: {
-                  unit_amount: ((item.subitem.price).to_i) * 10,
+                  unit_amount: ((item.subitem.price).to_i) * 100,
                   currency: "pkr",
                   product_data: {
                     name: item.subitem.title,
@@ -23,12 +23,39 @@ class CheckoutController < ApplicationController
             payment_method_types: ['card'],
             line_items: array,
             mode: 'payment',
-            success_url: cart_url,
-            cancel_url: cart_url,
+            success_url: succes_url,
+            cancel_url: fail_url,
           })
           respond_to do |format|
             format.html
           end
 
+    end
+
+    def succes
+
+      @cartitems = Cart.where("user_id = ?", current_user.id)
+      
+      @cartitems.each do |item|
+        @orders = Order.new
+        @orders.user_id = item.user_id
+        @orders.subitem_id = item.subitem_id
+        @orders.quantity = item.quantity
+        @orders.save
+      end
+      @cartitems.destroy_all
+      @orders = Order.where("user_id = ?", current_user.id)
+      
+
+    end
+    
+
+    def fail
+    end
+
+    def aboutus
+    end
+    
+    def contact
     end
 end

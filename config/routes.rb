@@ -6,7 +6,10 @@ Rails.application.routes.draw do
   patch 'cart/update'
 
   #stripe
-  
+  get 'succes' => 'checkout#succes'
+  get 'fail' => 'checkout#fail'
+  get 'aboutus' => 'checkout#aboutus'
+  get 'contact' => 'checkout#contact'
   post 'checkout' => 'checkout#create'
 
   devise_for :users, controllers: { sessions: 'users/sessions', unlocks: 'users/unlocks' }
@@ -21,8 +24,15 @@ Rails.application.routes.draw do
   post '/subitem/create' => 'subitems#create'
   get 'show/:id' => 'subitems#show'
   get 'delete/:id' => 'subitems#destroy'
+  #get 'admin' => 'subitems#admin'
 
   root to: "items#index"
 
+
+  #Admin
+  get 'Dashboard' => 'admin#adminDashboard'
+  get 'admin/subitem' => 'admin#subitem_admin'
+  get 'adminitem' => 'admin#item_admin'
+  get 'adminOrder' => 'admin#adminOrder'
 end
 

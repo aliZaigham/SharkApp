@@ -1,41 +1,39 @@
-<div class='container bg-light Larger shadow'>
-    <div class='row'>
-        <div class='col-8'>
-        <%= image_tag 'sign1.jpg', style: 'border-radius: 15px;', width: 730, height: 536 %>
+<div class="container shadow-lg p-4 rounded" style="height: 80vh; display: flex; flex-direction: column; justify-content: center; background-color: #c5eced;">
+  <div class="row">
+    <div class="col-md-8">
+      <%= image_tag 'sign1.jpg', style: 'border-radius: 15px;', class: 'img-fluid' %>
+    </div>
 
-        </div>
+    <div class="col-md-4 text-dark", style="background: #d8eded; border-radius: 10px;">
+      <h2 class="mt-4 text-center font-weight-bold">Sign up</h2>
 
-        <div class='col-4 text-white Larger shadow text-dark'>
-        <h2 class = 'mt-10 text-center text-2xl font-bold leading-9 tracking-tight'>Sign up</h2>
-
-        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
 
-        <div class="field">
-        <%= f.label :email, class:'block text-sm font-medium leading-4' %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control mb-3" %>
+        <div class="form-group">
+          <%= f.label :email, class: 'font-weight-bold' %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
         </div>
 
-        <div class="field">
-        <%= f.label :password, class:'block text-sm font-medium leading-4'%>
+        <div class="form-group">
+          <%= f.label :password, class: 'font-weight-bold' %>
 
-        <% if @minimum_password_length %>
-        <em>(<%= @minimum_password_length %> characters minimum)</em>
-        <% end %><br />
+          <% if @minimum_password_length %>
+            <em>(<%= @minimum_password_length %> characters minimum)</em>
+          <% end %><br />
 
-        <%= f.password_field :password, autocomplete: "new-password", class:"form-control mb-3" %>
+          <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
         </div>
 
-        <div class="field">
-        <%= f.label :password_confirmation %><br />
-        <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control mb-3" %>
+        <div class="form-group">
+          <%= f.label :password_confirmation, class: 'font-weight-bold' %><br />
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
         </div>
 
-        <div class="actions">
-        <%= f.submit "Sign up", class:'btn bg-primary text-white mb-3' %>
+        <div class="form-group">
+          <%= f.submit "Sign up", class: 'btn btn-primary btn-block' %>
         </div>
-        <% end %>
-        </div>
-
-    </div> 
+      <% end %>
+    </div>
+  </div>
 </div>

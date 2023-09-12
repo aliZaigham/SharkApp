@@ -1,41 +1,30 @@
+<div class="container">
+      <div class="row">
+            <% @subitems.each do |item| %>
+                  <div class="col-md-4 "> <!-- Added mb-3 class to reduce space between cards -->
+                        <div class="card mb-5" style="border-radius: 15px; width: 280px; height: 380px;">
+                              <% if item.image.present? %>
+                                    <%= image_tag item.image, style: "max-width: 100%; max-height: 200px; display: block; margin: 0 auto; border-radius: 15px;" %>
+                              <% end %>
+                              <div class="card-body text-dark Larger shadow" style="background: #d1e8d7; border-radius: 15px; ">
 
-<div class="d-flex">
-      <% @subitems.each do |item| %>   
-
-      <div class="card mx-auto" style="width: 28rem;">
-            <div class="card-body bg-secondary text-white">
-
-                  <h5 class = 'text-center'><%=item.title%></h5>
-                  <p class="card-text"><%=item.description%></p>
-                  <p class="card-text"><%=item.price%></p>
-                  <a href="show/<%=item.id%>">show</a> |
-                  <a href="delete/<%=item.id%>" data-turbo-confirm="are u sure">delete</a> |
-
-                  <%=form_with(url: cart_add_path) do |f| %>
-                        <%= f.hidden_field :id, value: item.id %>
-                        <div class:"d-flex">
-
-                                   <%= f.number_field :quantity, value: 0 ,min: 1, class:'Width 8% text-dark ' %>
+                                    
+                              <h5 class="text-center mt-3"><strong><%= item.title %></strong></h5>
                               
-                                   <%= f.submit "Add", class: "btn btn-primary"%>
-                              
-                        </div> 
-                  <% end %>
-                  
-            </div>
+
+                                          <p class="card-text"><strong class="text-danger">Price</strong> <strong><%= item.price %> Rs</strong>
+
+                                          <a href="show/<%= item.id %>" class="btn btn-danger float-end ml-5">Details</a></p>
+                                          
+
+
+                          
+                              </div>
+                        </div>
+                  </div> 
+                        
+            <% end %>
       </div>
-      <% end %>
 </div>
-<div class ='container'>
-      <div class ='row'>
-            <div class = 'col-6'>
-            </div>
 
-            <div class = 'col-2 mt-5'>
-                  <%= link_to "Add a Subitem", new_path, class: "btn btn-primary" %>
-            </div>
 
-            <div class = 'col-3'>
-            </div>
-      </div>      
-</div>

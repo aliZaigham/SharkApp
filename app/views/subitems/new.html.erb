@@ -5,6 +5,9 @@
             <option value='<%= i.id%>'><%= i.name%></option>
         <% end %>
     </select><br>
+    
+    <%= f.label :image %><br>
+    <%= f.file_field :image %><br>
 
     <%= f.label :Title %><br>
     <%= f.text_field :title %><br>

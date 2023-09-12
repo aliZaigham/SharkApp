@@ -1,10 +1,9 @@
 class SubitemsController < ApplicationController
 
-    before_action :authenticate_user!
 
 
     def index
-         item_id = params[:format].to_i
+        item_id = params[:format].to_i
         @subitems = Subitem.where("item_id = ? ",item_id)
     end
 
@@ -14,7 +13,7 @@ class SubitemsController < ApplicationController
     end
 
     def show
-        @subitem = SubIitem.find(params[:id])
+        @subitem = Subitem.find(params[:id])
     end
    
     def destroy
@@ -28,10 +27,13 @@ class SubitemsController < ApplicationController
     def create
 
         @subitem = Subitem.new
+
         @subitem.title = params[:subitem]["title"]
         @subitem.description = params[:subitem]["description"]
         @subitem.price = params[:subitem]["price"].to_i
         @subitem.item_id = params[:item_id]
+        @subitem.image = params[:subitem][:image]
+
 
         if @subitem.save
             redirect_to subitem_path
@@ -41,10 +43,12 @@ class SubitemsController < ApplicationController
                 
     end
 
+
+
     private
 
     def item_params
-        params.permit(:name, :description, :price, :item_id)
+        params.permit(:name, :description, :price, :item_id, :image)
     end
 
 end

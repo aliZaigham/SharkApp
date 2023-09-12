@@ -1,16 +1,14 @@
 <h1 class="mb-5 mt-5 mx-auto text-center">
-  <strong style="color: #3fd1c0;">Your Cart<i class="fa-solid fa-cart-arrow-down fa-2x" style="color: #3fd1c0;"></i></strong>
+  <strong style="color: #3fd1c0;">Payment is Completed ! <i class="fa-solid fa-circle-check"></i></strong>
 </h1>
 
-<div class="container-fluid mb-3">
-  <div class="row justify-content-center align-items-center">
-    <div class="col-12 text-center">
-      <%= button_to "Buy Now!", checkout_path, remote: true, data: { turbo: false }, class: "btn btn-primary my-2", style: "background: #207b7d;" %>
-    </div>
-  </div>
-</div>
+<h1 class="mb-5 mt-5 mx-auto text-center">
+  <strong style="color: #3fd1c0;">Your Order in Proccessing <i class="fa-solid fa-thumbs-up fa-xl"></i></strong>
+</h1>
 
-<div class="container-fluid">
+
+
+<div class="container">
   <div class="table-responsive">
     <table class="table table-bordered table-striped table-hover" style="width: 100%;">
       <thead style="background: #3fd1c0;">
@@ -19,11 +17,10 @@
           <th class="text-center">Price</th>
           <th class="text-center">Quantity</th>
           <th class="text-center">Subtotal</th>
-          <th class="text-center">Update</th>
         </tr>
       </thead>
       <tbody>
-        <% @cartitems.each do |item| %>
+        <% @orders.each do |item| %>
           <tr>
             <td class="text-center">
               <div class="d-flex align-items-center">
@@ -52,26 +49,14 @@
               <%= (item.subitem.price.to_i * item.quantity.to_i) %>
             </td>
 
-            <td class="text-center">
-              <div class="d-flex justify-content-center align-items-center">
-                <%= form_with(url: cart_update_path, method: :patch) do |f| %>
-                  <%= f.hidden_field :id, value: item.id %>
-                  <%= f.number_field :quantity, value: item.quantity, min: 0, class: 'text-dark', style: "width: 40px; height: 37px;" %>
-
-                  <%= f.button :submit, class: "btn btn-primary mr-1", style: "background: #207b7d;" do %>
-                  <i class="fa-solid fa-pen fa-lg text-white"></i>
-                  <% end %>
-                  
-                <% end %>
-                <%= form_with(url: cart_remove_path) do |f| %>
-                  <input type="hidden" value="<%= item.id %>" name="item_id">
-                  <%= f.submit "X", class: "btn btn-danger" %>
-                <% end %>
-              </div>
-            </td>
           </tr>
         <% end %>
       </tbody>
     </table>
   </div>
 </div>
+
+
+<h1 class="mb-5 mt-5 mx-auto text-center">
+  <strong style="color: #3fd1c0;">Thankx For Your Interest</strong>
+</h1>

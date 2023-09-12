@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-primary mb-5">
+<nav class="navbar navbar-expand-lg navbar-light mb-4" style="background: #3fd1c0">
   <a class="navbar-brand text-white" href="#"><strong>DinnerDash</strong></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -6,22 +6,23 @@
   <div class="collapse navbar-collapse mx-0" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link text-white" href="#"><strong>Home</strong><span class="sr-only">(current)</span></a>
+        <a class="nav-link text-white" href="/items"><strong>Home</strong></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-white" href="#"><strong>Features</strong></a>
+        <a class="nav-link text-white" href="aboutus"><strong>About us</strong></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-white" href="#"><strong>Pricing</strong></a>
+        <a class="nav-link text-white" href="/contact"><strong>Contact</strong></a>
       </li>
     </ul>
   </div>
-  <a href="/cart" class="btn btn-dark mr-2" style="margin-right: 10px !important;"><i class="fa-solid fa-cart-plus fa-xl"></i>Cart(<%=item_count%>)</a>
-  <%if(user_signed_in?)%>
-      <i class="fa-solid fa-right-from-bracket fa-xl mr-2 ml-3"></i> 
-      <%= link_to 'Sign Out',destroy_user_session_path, data: {"turbo-method": :delete}, class:'btn btn-dark text-center' %>
+  <a href="/cart" class="nav-link text-white ml-auto btn mr-2", style="background: #207b7d"><strong ><i class="fa-solid fa-cart-plus fa-xl"></i>Bucket(<%= item_count %>)</strong></a>
+  <% if user_signed_in? %>
+    <i class="fa-solid fa-right-to-bracket fa-2xl" style="color: white"></i>
+    <%= link_to 'Sign Out', destroy_user_session_path, data: { "turbo-method": :delete }, class: 'nav-link text-white ml-1 font-weight-bold', style:"background: #207b7d" %>
   <% else %>
-      <i class="fa-solid fa-user fa-xl mr-2 ml-3"></i>
-      <%= link_to 'Sign In',new_user_session_path,class:'btn btn-dark mx-auto'%><br>
+  
+    <i class="fa-solid fa-user fa-2xl" style="color: white"></i>
+    <%= link_to 'Sign In', new_user_session_path, class: 'nav-link text-white btn ml-1 font-weight-bold', style:"background: #207b7d" %>
   <% end %>
 </nav>

@@ -1,3 +1,53 @@
-<h1><%=@subitem.title%></h1>
-<h5><%=@subitem.description%>
-<h5><%=@subitem.price%></h5>
+
+<div class="card mx-auto mt-5" style="max-width: 30rem; border-radius: 25px;">
+  
+  <div class="d-flex justify-content-center align-items-center" style="height: 300px; border-radius: 25px 25px 0 0;">
+    <%= image_tag @subitem.image, class: 'card-img-top', style: 'max-width: 100%; max-height: 100%;' %>
+  </div>
+
+  <!-- Card Body -->
+  <div class="card-body">
+      <h1 class="card-title"><%= @subitem.title %></h1>
+      <p class="card-text"><%= @subitem.description %></p>
+      <div class="d-flex justify-content-between">
+      <div>
+        <h5 class="card-text mt-2"><strong class="text-danger">Price </strong><%= @subitem.price %><strong> Rs </strong></h5>
+      </div>
+
+      <div>
+        <% if user_signed_in? %>
+
+          <%= form_with(url: cart_add_path) do |f| %>
+            <%= f.hidden_field :id, value: @subitem.id %>
+            <%= f.number_field :quantity, value: 0, min: 1, class:'text-dark', style: 'width: 50px; height: 37px;' %>
+
+            <%= f.button :submit, class: "btn btn-danger" do %>
+              <i class="fa-solid fa-square-plus fa-2xl text-white"></i>
+            <% end %>
+
+        
+            
+          <% end %>
+
+          <% else %>
+
+              <%= form_with(url: new_user_session_path) do |f| %>
+                <%= f.hidden_field :id, value: @subitem.id %>
+                <%= f.number_field :quantity, value: 0, min: 1, class:'text-dark', style: 'width: 50px; height: 37px;' %>
+              
+                <%= f.button :submit, class: "btn btn-danger" do %>
+                  <i class="fa-solid fa-square-plus fa-2xl text-white"></i>
+                <% end %>
+                
+                 
+              <% end %> 
+
+        <% end %>
+
+      </div>
+
+    </div>
+    
+  </div>
+</div>
+

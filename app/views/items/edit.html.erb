@@ -1,15 +1,25 @@
-
-
-<%= form_for @items, url: item_path(@item), method: :patch do |f| %>    
-    <%= f.label :name %>
-    <%= f.text_field :name %><br>
+<div class="container">
+<%= form_for @item, url: item_path(@item), method: :patch, html: { class: 'form' } do |f| %>
+    <div class="mb-3">
+      <%= f.label :image, class: 'form-label' %>
+      <%= f.file_field :image, class: 'form-control' %>
+    </div>
+    
+    <div class="mb-3">
+      <%= f.label :name, class: 'form-label' %>
+      <%= f.text_field :name, class: 'form-control' %>
+    </div>
   
-    <%= f.label :Descr %>
-    <%= f.text_area :description %><br
+    <div class="mb-3">
+      <%= f.label :description, class: 'form-label' %>
+      <%= f.text_area :description, class: 'form-control', rows: 4 %>
+    </div>
   
-    <%= f.label :price %>
-    <%= f.number_field :price %><br>
+    <div class="mb-3">
+      <%= f.label :price, class: 'form-label' %>
+      <%= f.number_field :price, class: 'form-control' %>
+    </div>
   
-    <%= f.submit 'Update Item' %>
-<% end %>
-  
+    <%= f.submit 'Update Item', class: 'btn btn-primary' %>
+  <% end %>
+</div>  

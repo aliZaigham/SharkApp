@@ -1,0 +1,41 @@
+<h1 class="text-center mb-4"><strong>Category Of Dinner Dash</strong></h1>
+<div class="container">
+  <div class="row">
+    <div class="col-6"></div>
+
+    <div class="col-3"></div>
+  </div>
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Image</th>
+        <th>Title</th>
+        <th>Price</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @subitems.each do |item| %>
+        <tr>
+          <td>
+            <% if item.image.present? %>
+              <%= image_tag item.image, style: "max-width: 100%; max-height: 200px; display: block; margin: 0 auto; border-radius: 15px;" %>
+            <% end %>
+          </td>
+          <td><%= item.title %></td>
+          <td><strong class="text-danger">Price</strong> <%= item.price %> Rs</td>
+          <td>
+
+              <%= link_to "Show", "show/#{item.id}", class: "btn btn-danger" %>
+
+              <%= link_to "Delete", "delete/#{item.id}", data: { turbo_confirm: 'Are you sure?' }, class: 'btn btn-warning' %>
+
+              <%= link_to "Add", new_path, class: "btn btn-primary" %>
+        
+        </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
