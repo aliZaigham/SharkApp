@@ -13,17 +13,27 @@
         <tr>
         <th class="mx-auto text-center">Image</th>
         <th class="mx-auto text-center">Name</th>
-        <th class="mx-auto text-center">Description</th>
+        <th class="mx-auto text-center">Quantity</th>
+        <th class="mx-auto text-center">Price</th>
+        <th class="mx-auto text-center">Sub Total</th>
+        <th class="mx-auto text-center">Customer Email</th>
+        <th class="mx-auto text-center">Address</th>
+        <th class="mx-auto text-center">Phone</th>
+
+
         </tr>
     </thead>
     <tbody>
         <% @order.each do |item| %>
         <tr>
-            <td>
+            <td class="mx-auto text-center">
             <%= image_tag item.subitem.image, class: 'rounded-top', style: 'max-width: 100%; height: 100px;' %>
             </td>
-            <td><strong><%= item.subitem.title %></strong></td>
-            <td><%= item.subitem.description.truncate(200) %></td>
+            <td class="mx-auto text-center"><strong><%= item.subitem.title %></strong></td>
+            <td class="mx-auto text-center"><%= item.quantity %></th>
+            <td class="mx-auto text-center"><%= item.subitem.price %></th>
+            <td class="mx-auto text-center"><%= (item.subitem.price.to_i * item.quantity.to_i)%></td>
+            <td class="mx-auto text-center"><%= item.user.email %></td>
         </tr>
         <% end %>
     </tbody>

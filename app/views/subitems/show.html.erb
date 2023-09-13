@@ -9,45 +9,47 @@
   <div class="card-body">
       <h1 class="card-title"><%= @subitem.title %></h1>
       <p class="card-text"><%= @subitem.description %></p>
-      <div class="d-flex justify-content-between">
-      <div>
+
         <h5 class="card-text mt-2"><strong class="text-danger">Price </strong><%= @subitem.price %><strong> Rs </strong></h5>
-      </div>
 
-      <div>
-        <% if user_signed_in? %>
+        <%= form_with(url: cart_add_path) do |f| %>
+          <div class="form-group text-center">
 
-          <%= form_with(url: cart_add_path) do |f| %>
-            <%= f.hidden_field :id, value: @subitem.id %>
-            <%= f.number_field :quantity, value: 0, min: 1, class:'text-dark', style: 'width: 50px; height: 37px;' %>
-
-            <%= f.button :submit, class: "btn btn-danger" do %>
-              <i class="fa-solid fa-square-plus fa-2xl text-white"></i>
-            <% end %>
-
-        
+            <button type="button" class="btn btn-white" id="btn1"><i class="fa-solid fa-minus fa-lg" style="display: inline-block;"></i></button>
+            <%= f.text_field :quantity, id: 'quantity-input', value: 0, min: 1, class: 'form-control text-dark', style: 'display: inline-block; width: 50px;', autocomplete: 'off' %>
+            <button type="button" class="btn btn-white" id="btn2"><i class="fa-solid fa-plus fa-lg" style="display: inline-block;"></i></button>
             
-          <% end %>
+          </div>
 
-          <% else %>
-
-              <%= form_with(url: new_user_session_path) do |f| %>
-                <%= f.hidden_field :id, value: @subitem.id %>
-                <%= f.number_field :quantity, value: 0, min: 1, class:'text-dark', style: 'width: 50px; height: 37px;' %>
-              
-                <%= f.button :submit, class: "btn btn-danger" do %>
-                  <i class="fa-solid fa-square-plus fa-2xl text-white"></i>
-                <% end %>
-                
-                 
-              <% end %> 
-
+          <div class="form-group">
+            <%= f.hidden_field :id, value: @subitem.id %>
+          </div>
+          <div class="form-group text-center">
+            <%= f.submit "  Add to Bucket  ", class: "btn btn-danger" %>
+          </div>
         <% end %>
-
-      </div>
-
-    </div>
+        
     
   </div>
 </div>
 
+
+<script>
+
+    var quantityInput = document.getElementById('quantity-input');
+    var minusButton = document.querySelector('#btn1');
+    var plusButton = document.querySelector('#btn2');
+
+    minusButton.addEventListener('click', function () {
+      const currentValue = parseInt(quantityInput.value);
+      if (currentValue > 0) {
+        quantityInput.value = currentValue - 1;
+      }
+    });
+
+    plusButton.addEventListener('click', function () {
+      const currentValue = parseInt(quantityInput.value);
+      quantityInput.value = currentValue + 1;
+    });
+
+</script>

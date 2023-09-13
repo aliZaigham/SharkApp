@@ -23,7 +23,7 @@ class CartController < ApplicationController
     elsif quantity <= 0
 
       @cart.destroy if @cart.persisted?
-      flash[:notice] = "Cart item removed successfully."
+      flash[:notice] = "Please enter valid value to enter into cart."
 
     else
 
