@@ -34,6 +34,8 @@
             <td class="mx-auto text-center"><%= item.subitem.price %></th>
             <td class="mx-auto text-center"><%= (item.subitem.price.to_i * item.quantity.to_i)%></td>
             <td class="mx-auto text-center"><%= item.user.email %></td>
+            <td class="mx-auto text-center"><%= item.address %></td>
+            <td class="mx-auto text-center"><%= item.phone_number %></td>
         </tr>
         <% end %>
     </tbody>

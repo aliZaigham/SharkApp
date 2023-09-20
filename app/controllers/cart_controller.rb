@@ -30,8 +30,6 @@ class CartController < ApplicationController
       flash[:error] = "Invalid quantity."
       
     end
-  
-    # Redirect or render as needed
   end
   
 

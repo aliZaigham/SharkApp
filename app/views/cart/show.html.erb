@@ -2,15 +2,35 @@
   <strong style="color: #3fd1c0;">Your Cart<i class="fa-solid fa-cart-arrow-down fa-2x" style="color: #3fd1c0;"></i></strong>
 </h1>
 
-<div class="container-fluid mb-3">
-  <div class="row justify-content-center align-items-center">
-    <div class="col-12 text-center">
-      <%= button_to "Buy Now!", checkout_path, remote: true, data: { turbo: false }, class: "btn btn-primary my-2", style: "background: #207b7d;" %>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <fieldset>
+        <h3 class="text-center"><strong style="color: #3fd1c0;">Add Your Address</strong></h3>
+        <%= form_tag('/checkout', remote: true, data: { turbo: false }) do |f| %>
+          <div class="mb-3">
+            <%= label_tag :address, 'Address', class: 'form-label' %>
+            <%= text_field_tag :address, nil, class: 'form-control', required: true %>
+          </div>
+        
+          <div class="mb-3">
+            <%= label_tag :phone_number, 'Phone Number', class: 'form-label' %>
+            <%= text_field_tag :phone_number, nil, class: 'form-control', required: true %>
+          </div>
+        
+          <%= hidden_field_tag :user_id, current_user.id %>
+        
+          <div class="text-center">
+            <%= submit_tag 'Buy Now!', class: 'btn btn-primary', style: "background: #3fd1c0" %>
+          </div>
+        <% end %>
+        
+      </fieldset>
     </div>
   </div>
 </div>
 
-<div class="container-fluid">
+<div class="container-fluid mt-4">
   <div class="table-responsive">
     <table class="table table-bordered table-striped table-hover" style="width: 100%;">
       <thead style="background: #3fd1c0;">

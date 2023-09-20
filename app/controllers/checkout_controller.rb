@@ -1,5 +1,6 @@
 class CheckoutController < ApplicationController
     def create
+
         cartitems = Cart.where("user_id=?",current_user.id)
 
         array = []
@@ -26,6 +27,11 @@ class CheckoutController < ApplicationController
             success_url: succes_url,
             cancel_url: fail_url,
           })
+
+
+        session[:address] = params[:address]
+        session[:phone] = params[:phone_number]        
+
           respond_to do |format|
             format.html
           end
@@ -33,17 +39,20 @@ class CheckoutController < ApplicationController
     end
 
     def succes
-
       @cartitems = Cart.where("user_id = ?", current_user.id)
       
       @cartitems.each do |item|
         @orders = Order.new
         @orders.user_id = item.user_id
+        @orders.address = session[:address]
+        @orders.phone_number = session[:phone]
         @orders.subitem_id = item.subitem_id
         @orders.quantity = item.quantity
         @orders.save
       end
       @cartitems.destroy_all
+      session.delete(:address)
+      session.delete(:phone)
       @orders = Order.where("user_id = ?", current_user.id)
       
 
